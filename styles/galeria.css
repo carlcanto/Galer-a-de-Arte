@@ -1,0 +1,330 @@
+/* SECCIÓN GALERÍA - Diseño de collage asimétrico */
+#galeria {
+    background: 
+        linear-gradient(135deg, #ffffff 0%, #f8fdff 50%, #ffffff 100%),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(159, 231, 245, 0.05) 10px, rgba(159, 231, 245, 0.05) 20px);
+    padding: 6rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#galeria::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(247, 173, 25, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(242, 127, 12, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+#galeria h2 {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--dark-blue);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#galeria h2::before,
+#galeria h2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    opacity: 0.7;
+    animation: frameFloat 4s ease-in-out infinite;
+}
+
+#galeria h2::before {
+    left: -60px;
+    animation-delay: 0s;
+}
+
+#galeria h2::after {
+    right: -60px;
+    animation-delay: 2s;
+}
+
+@keyframes frameFloat {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    25% { transform: translateY(-60%) rotate(10deg); }
+    50% { transform: translateY(-50%) rotate(0deg); }
+    75% { transform: translateY(-40%) rotate(-10deg); }
+}
+
+/* CONTENEDOR DE GALERÍA DE IMÁGENES - DISEÑO DE COLLAGE */
+.galeria-imagenes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 1200px;
+    perspective: 1000px;
+}
+
+/* FIGURAS CON DISEÑO DE FOTOS PEGADAS */
+.galeria-imagenes figure {
+    margin: 0;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 10px 20px rgba(5, 63, 92, 0.2));
+}
+
+.galeria-imagenes figure:nth-child(odd) {
+    transform: rotate(2deg) translateY(20px);
+}
+
+.galeria-imagenes figure:nth-child(even) {
+    transform: rotate(-1deg) translateY(-10px);
+}
+
+.galeria-imagenes figure::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, var(--cyan), var(--orange), var(--coral));
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 10%, 90% 100%, 10% 90%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.galeria-imagenes figure:hover {
+    transform: rotate(0deg) translateY(0) scale(1.05);
+    z-index: 10;
+}
+
+.galeria-imagenes figure:hover::before {
+    opacity: 0.3;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* IMÁGENES CON EFECTO DE PINTURA */
+.galeria-imagenes img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 5%, 95% 100%, 5% 95%);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: sepia(0.2) contrast(1.1) saturate(1.1);
+    border: 8px solid white;
+    background: white;
+    box-shadow: 
+        15px 15px 0 var(--cyan),
+        -15px -15px 0 var(--orange),
+        0 0 0 1px rgba(5, 63, 92, 0.1);
+}
+
+.galeria-imagenes img:hover {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    filter: sepia(0) contrast(1) saturate(1.2) brightness(1.05);
+    transform: translateZ(20px);
+    box-shadow: 
+        0 0 0 var(--cyan),
+        0 0 0 var(--orange),
+        0 25px 50px rgba(5, 63, 92, 0.4),
+        0 0 0 3px white;
+}
+
+/* CAPTIONS CON DISEÑO DE ETIQUETA */
+.galeria-imagenes figcaption {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    background: linear-gradient(135deg, var(--dark-blue), var(--blue));
+    color: white;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-align: center;
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px rgba(5, 63, 92, 0.3);
+    transition: all 0.4s ease;
+    z-index: 5;
+}
+
+.galeria-imagenes figure:hover figcaption {
+    bottom: -25px;
+    transform: translateX(-50%) rotate(0deg) scale(1.1);
+    background: linear-gradient(135deg, var(--orange), var(--coral));
+}
+
+/* SECCIÓN MULTIMEDIA - DISEÑO DE ESTUDIO */
+.multimedia {
+    max-width: 1000px;
+    margin: 5rem auto 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    padding: 3rem;
+    clip-path: polygon(0 5%, 100% 0, 95% 100%, 5% 95%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.multimedia::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--cyan), var(--blue), var(--orange));
+    clip-path: polygon(0 5%, 100% 0, 95% 100%, 5% 95%);
+    z-index: -1;
+    opacity: 0.5;
+    animation: gradientShift 4s ease infinite;
+}
+
+.multimedia h3 {
+    font-size: 2rem;
+    color: var(--dark-blue);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.multimedia h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--coral), transparent);
+    border-radius: 2px;
+}
+
+/* VIDEO CON EFECTO DE PROYECTOR */
+.multimedia video {
+    width: 100%;
+    height: 400px;
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 10%, 90% 90%, 10% 100%);
+    background: var(--dark-blue);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: brightness(0.95) contrast(1.1);
+    border: 3px solid var(--dark-blue);
+    box-shadow: 
+        20px 20px 0 rgba(159, 231, 245, 0.3),
+        -10px -10px 0 rgba(247, 173, 25, 0.2);
+}
+
+.multimedia video:hover {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    filter: brightness(1) contrast(1);
+    transform: translateY(-10px);
+    box-shadow: 
+        0 0 0 rgba(159, 231, 245, 0.3),
+        0 0 0 rgba(247, 173, 25, 0.2),
+        0 25px 50px rgba(5, 63, 92, 0.4);
+}
+
+/* AUDIO CON DISEÑO DE VINILO */
+.multimedia audio {
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--dark-blue), var(--blue));
+    padding: 1rem;
+    filter: drop-shadow(0 10px 20px rgba(5, 63, 92, 0.3));
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.multimedia audio::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    z-index: 1;
+    animation: musicNote 2s ease-in-out infinite;
+}
+
+.multimedia audio:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    filter: drop-shadow(0 15px 30px rgba(66, 158, 189, 0.4));
+}
+
+@keyframes musicNote {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-60%) scale(1.2); }
+}
+
+/* CONTROLES DE VIDEO Y AUDIO PERSONALIZADOS */
+.multimedia video::-webkit-media-controls-panel {
+    background: linear-gradient(135deg, rgba(5, 63, 92, 0.9), rgba(66, 158, 189, 0.8));
+}
+
+.multimedia audio::-webkit-media-controls-panel {
+    background: linear-gradient(135deg, var(--dark-blue), var(--blue));
+    border-radius: 50px;
+}
+
+/* EFECTO DE LUZ DE ESTUDIO */
+.multimedia::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    height: 100px;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+    animation: studioLight 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes studioLight {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 0.6; transform: translateY(20px); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .galeria-imagenes {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .galeria-imagenes figure:nth-child(odd),
+    .galeria-imagenes figure:nth-child(even) {
+        transform: none;
+    }
+    
+    .multimedia {
+        padding: 2rem 1rem;
+        clip-path: polygon(0 2%, 100% 0, 98% 100%, 2% 98%);
+    }
+    
+    .multimedia video {
+        height: 300px;
+    }
+    
+    #galeria h2::before,
+    #galeria h2::after {
+        display: none;
+    }
+}

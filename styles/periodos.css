@@ -1,0 +1,281 @@
+/* SECCIÓN PERIODOS - Diseño de tarjetas rotadas */
+#periodos {
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(159, 231, 245, 0.1) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(247, 173, 25, 0.05) 50%, transparent 52%);
+    background-size: 60px 60px;
+    padding: 6rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#periodos h2 {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--dark-blue);
+    transform: rotate(-2deg);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+#periodos h2::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    right: -20px;
+    bottom: -10px;
+    background: linear-gradient(45deg, var(--cyan), var(--orange));
+    z-index: -1;
+    clip-path: polygon(0 20%, 100% 0, 80% 100%, 20% 80%);
+    opacity: 0.3;
+}
+
+/* CONTENEDOR DE TARJETAS EN ESPIRAL */
+#periodos {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+}
+
+.periodo {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+/* CADA TARJETA CON ROTACIÓN DIFERENTE */
+.periodo:nth-child(odd) {
+    transform: rotate(3deg) translateX(-50px);
+    clip-path: polygon(0 0, 100% 5%, 95% 100%, 5% 95%);
+}
+
+.periodo:nth-child(even) {
+    transform: rotate(-2deg) translateX(50px);
+    clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 95%);
+}
+
+.periodo::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, var(--cyan), var(--blue), var(--orange));
+    z-index: -1;
+    clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.periodo:hover {
+    transform: rotate(0deg) translateX(0) scale(1.02);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    z-index: 10;
+}
+
+.periodo:hover::before {
+    opacity: 1;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* ENCABEZADOS DE PERIODO CON EFECTO DE PINCEL */
+.periodo h3 {
+    font-size: 2.2rem;
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.periodo h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--orange), var(--coral));
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+    opacity: 0.6;
+}
+
+time {
+    background: var(--dark-blue);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0 15px 0 15px;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    transform: rotate(5deg);
+    display: inline-block;
+}
+
+/* LISTAS CON DISEÑO ORGÁNICO */
+.periodo ul, .periodo ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.periodo ul::before, .periodo ol::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--cyan), var(--blue));
+    border-radius: 10px;
+    transform: skewX(-15deg);
+}
+
+.periodo li {
+    margin: 0.8rem 0;
+    padding: 0.5rem 1rem;
+    background: rgba(159, 231, 245, 0.1);
+    border-radius: 0 20px 20px 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.periodo li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--cyan);
+    transition: width 0.3s ease;
+}
+
+.periodo li:hover {
+    transform: translateX(0);
+    background: rgba(66, 158, 189, 0.1);
+}
+
+.periodo li:hover::before {
+    width: 6px;
+}
+
+/* LISTA DESCRIPTIVA CON DISEÑO DE NOTAS */
+.periodo dl {
+    background: linear-gradient(135deg, rgba(247, 173, 25, 0.05), rgba(159, 231, 245, 0.05));
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--orange);
+    transform: rotate(-1deg);
+    clip-path: polygon(0 0, 100% 5%, 95% 100%, 0 95%);
+}
+
+.periodo dt {
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-top: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.periodo dt::after {
+    content: '→';
+    margin-left: 0.5rem;
+    color: var(--coral);
+    animation: arrowBounce 2s ease-in-out infinite;
+}
+
+.periodo dd {
+    margin-left: 1.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 10px 10px 0;
+    border-left: 3px solid var(--blue);
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* ELEMENTOS DE TEXTO CON EFECTOS */
+.periodo strong {
+    background: linear-gradient(120deg, transparent 0%, var(--cyan) 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: -100% 0;
+    transition: background-position 0.5s ease;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0 8px 0 8px;
+}
+
+.periodo strong:hover {
+    background-position: 0 0;
+}
+
+.periodo em {
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+}
+
+.periodo em::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), var(--coral));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.periodo em:hover::after {
+    transform: scaleX(1);
+}
+
+/* EFECTO DE SOMBRA DINÁMICA */
+.periodo {
+    box-shadow: 
+        20px 20px 0 rgba(159, 231, 245, 0.2),
+        -20px -20px 0 rgba(247, 173, 25, 0.1);
+}
+
+.periodo:hover {
+    box-shadow: 
+        0 0 0 rgba(159, 231, 245, 0.2),
+        0 0 0 rgba(247, 173, 25, 0.1),
+        0 25px 50px rgba(5, 63, 92, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #periodos h2 {
+        font-size: 2.5rem;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    
+    .periodo:nth-child(odd),
+    .periodo:nth-child(even) {
+        transform: rotate(0deg) translateX(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        width: 95%;
+    }
+    
+    .periodo {
+        padding: 1.5rem;
+    }
+}
