@@ -227,69 +227,63 @@
             </div>
         </section>
 
+       <!-- Ejemplo de formulario del quiz (reemplaza o adapta tu HTML actual dentro de #quiz) -->
         <section id="quiz">
-            <h2>Test de Conocimiento Artístico</h2>
-            
-            <form id="quiz-arte" method="post">
-                <fieldset>
-                    <legend>Datos del Estudiante</legend>
-                    
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre">
-                    
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
-                    
-                    <label for="nivel">Nivel de conocimiento:</label>
-                    <select id="nivel" name="nivel">
-                        <option value="">Selecciona tu nivel</option>
-                        <option value="principiante">Principiante</option>
-                        <option value="intermedio">Intermedio</option>
-                        <option value="avanzado">Avanzado</option>
-                    </select>
-                </fieldset>
+        <h2 id="quiz-title">Test de Conocimiento</h2>
 
-                <fieldset>
-                    <legend>Preguntas del Quiz</legend>
-                    
-                    <p><strong>1. ¿Quién pintó "La Noche Estrellada"?</strong></p>
-                    <input type="radio" id="p1-vangogh" name="pregunta1" value="vangogh">
-                    <label for="p1-vangogh">Vincent van Gogh</label><br>
-                    
-                    <input type="radio" id="p1-monet" name="pregunta1" value="monet">
-                    <label for="p1-monet">Claude Monet</label><br>
-                    
-                    <input type="radio" id="p1-picasso" name="pregunta1" value="picasso">
-                    <label for="p1-picasso">Pablo Picasso</label>
+        <form id="quiz-arte" aria-labelledby="quiz-title">
+            <!-- Pregunta 1 -->
+            <div class="quiz-question" data-name="q1" data-correct="b" data-correct-text="Renacimiento">
+            <p class="question-text">1) ¿Cuál es el periodo artístico al que pertenece Leonardo da Vinci?</p>
+            <label><input type="radio" name="q1" value="a"> Gótico</label><br>
+            <label><input type="radio" name="q1" value="b"> Renacimiento</label><br>
+            <label><input type="radio" name="q1" value="c"> Barroco</label>
+            <div class="quiz-feedback" aria-live="polite"></div>
+            </div>
 
-                    <p><strong>2. Selecciona los artistas del Renacimiento:</strong></p>
-                    <input type="checkbox" id="p2-leonardo" name="pregunta2" value="leonardo">
-                    <label for="p2-leonardo">Leonardo da Vinci</label><br>
-                    
-                    <input type="checkbox" id="p2-velazquez" name="pregunta2" value="velazquez">
-                    <label for="p2-velazquez">Diego Velázquez</label><br>
-                    
-                    <input type="checkbox" id="p2-miguelangel" name="pregunta2" value="miguelangel">
-                    <label for="p2-miguelangel">Miguel Ángel</label>
+            <!-- Pregunta 2 -->
+            <div class="quiz-question" data-name="q2" data-correct="c" data-correct-text="Cubismo">
+            <p class="question-text">2) ¿Qué movimiento se asocia a Picasso en sus años de experimentación?</p>
+            <label><input type="radio" name="q2" value="a"> Impresionismo</label><br>
+            <label><input type="radio" name="q2" value="b"> Realismo</label><br>
+            <label><input type="radio" name="q2" value="c"> Cubismo</label>
+            <div class="quiz-feedback" aria-live="polite"></div>
+            </div>
 
-                    <p><strong>3. Describe qué es el Impresionismo:</strong></p>
-                    <textarea id="pregunta3" name="pregunta3" rows="4" cols="50" placeholder="Escribe tu respuesta aquí..."></textarea>
+            <!-- Pregunta 3 -->
+            <div class="quiz-question" data-name="q3" data-correct="a" data-correct-text="Impresionismo">
+            <p class="question-text">3) Monet es habitualmente asociado a:</p>
+            <label><input type="radio" name="q3" value="a"> Impresionismo</label><br>
+            <label><input type="radio" name="q3" value="b"> Neoclasicismo</label><br>
+            <label><input type="radio" name="q3" value="c"> Romanticismo</label>
+            <div class="quiz-feedback" aria-live="polite"></div>
+            </div>
 
-                    <label for="periodo-favorito">4. ¿Cuál es tu periodo favorito?</label>
-                    <input list="periodos-lista" id="periodo-favorito" name="periodo-favorito">
-                    <datalist id="periodos-lista">
-                        <option value="Renacimiento">
-                        <option value="Barroco">
-                        <option value="Impresionismo">
-                        <option value="Cubismo">
-                        <option value="Surrealismo">
-                    </datalist>
-                </fieldset>
+            <!-- Pregunta 4 -->
+            <div class="quiz-question" data-name="q4" data-correct="b" data-correct-text="Surrealismo">
+            <p class="question-text">4) Dalí es conocido por su vinculación con:</p>
+            <label><input type="radio" name="q4" value="a"> Cubismo</label><br>
+            <label><input type="radio" name="q4" value="b"> Surrealismo</label><br>
+            <label><input type="radio" name="q4" value="c"> Rococó</label>
+            <div class="quiz-feedback" aria-live="polite"></div>
+            </div>
 
-                <button type="submit">Enviar Respuestas</button>
-                <button type="reset">Limpiar Formulario</button>
-                <progress value="0" max="100">0%</progress>
-            </form>
+            <!-- Pregunta 5 -->
+            <div class="quiz-question" data-name="q5" data-correct="c" data-correct-text="Barroco">
+            <p class="question-text">5) ¿Qué estilo es anterior cronológicamente?</p>
+            <label><input type="radio" name="q5" value="a"> Modernismo</label><br>
+            <label><input type="radio" name="q5" value="b"> Romanticismo</label><br>
+            <label><input type="radio" name="q5" value="c"> Barroco</label>
+            <div class="quiz-feedback" aria-live="polite"></div>
+            </div>
+
+            <div style="margin-top:1.5rem;">
+            <button type="submit" id="quiz-submit">Enviar respuestas</button>
+            <button type="button" id="quiz-reset" style="display:none;">Reintentar</button>
+            </div>
+
+            <div id="quiz-result" role="status" aria-live="polite" style="margin-top:1rem;"></div>
+        </form>
         </section>
 
         <section id="linea-tiempo">
@@ -428,3 +422,5 @@
     </footer>
 </body>
 </html>
+
+<script src="scripts/quiz.js"></script>

@@ -134,7 +134,6 @@ nav[aria-label="Navegación principal"] a:hover::after {
     opacity: 1;
 }
 
-/* Efecto de ripple al hacer click */
 nav[aria-label="Navegación principal"] a:active {
     transform: translateY(-1px) scale(0.98) !important;
     transition: all 0.1s ease !important;

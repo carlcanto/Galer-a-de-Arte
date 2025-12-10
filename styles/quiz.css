@@ -450,3 +450,21 @@
         font-size: 2.5rem;
     }
 }
+
+.quiz-question { padding: 0.6rem 0.4rem; border-radius: 6px; margin-bottom: 1rem; }
+.quiz-question.correct { outline: 3px solid rgba(76, 175, 80, 0.15); background: rgba(76,175,80,0.03); }
+.quiz-question.incorrect { outline: 3px solid rgba(244, 67, 54, 0.08); background: rgba(244,67,54,0.02); }
+.quiz-feedback { margin-top: 0.6rem; color: var(--dark-blue); font-weight: 600; }
+#quiz-result { padding: 0.8rem; border-radius: 6px; background: rgba(66,158,189,0.06); }
+
+/* Pequeños estilos para botones y accesibilidad */
+#quiz-submit, #quiz-reset {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--blue);
+  color: white;
+  cursor: pointer;
+}
+#quiz-reset { background: var(--coral); }
+#quiz-submit[disabled] { opacity: 0.6; cursor: not-allowed; }
