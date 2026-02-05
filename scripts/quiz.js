@@ -1,5 +1,4 @@
 // scripts/quiz.js
-// Sencillo manejador del quiz (5 preguntas de opción única).
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('quiz-arte');
   if (!form) return;
